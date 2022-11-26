@@ -4,7 +4,6 @@
  * 이 되고,
  * 77 + 41 + 53 + 85 = 256
  * 41 < 53 < 77 < 85 이므로 홀수들 중 최소값은 41이 된다.
- * @param arr
  */
 
 function solution(arr: number[]): number[] {
@@ -19,3 +18,20 @@ function solution(arr: number[]): number[] {
 }
 
 console.log(solution([12, 77, 38, 41, 53, 92, 85]));
+
+function lectureSolution(arr: number[]): number[] {
+  let answer = [];
+  let min = Number.MAX_SAFE_INTEGER,
+    sum = 0;
+  for (const x of arr) {
+    if (x % 2 === 1) {
+      sum += x;
+      if (x < min) min = x;
+    }
+  }
+  answer.push(sum);
+  answer.push(min);
+  return answer;
+}
+
+console.log(lectureSolution([12, 77, 38, 41, 53, 92, 85]));
