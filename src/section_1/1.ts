@@ -3,7 +3,8 @@
  */
 
 function solution(a:number, b:number, c:number){
-    return Math.max(a,b,c)
+
+    return Math.min(a,b,c)
 }
 
 console.log(solution(2, 5, 1))
