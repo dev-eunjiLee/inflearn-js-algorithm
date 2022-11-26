@@ -17,3 +17,21 @@ function solution(a: number, b: number, c: number): string {
 }
 console.log(solution(6, 7, 11)); // YES
 console.log(solution(13, 33, 17)); // NO
+
+function lectureSolution(a: number, b: number, c: number): string {
+  let answer = "YES",
+    max;
+  let sum = a + b + c;
+  // 최대값, 나머지 구하기
+  if (a > b) max = a;
+  else max = b;
+  if (c > max) max = c;
+  // sum - max는 나머지 변들의 합이기 때문에 최대값과 비교하여 삼각형 가능 여부 체크
+  if (sum - max <= max) answer = "NO";
+
+  return answer;
+}
+console.log("==== lectureSolution ===="); // NO
+
+console.log(lectureSolution(6, 7, 11)); // YES
+console.log(lectureSolution(13, 33, 17)); // NO
