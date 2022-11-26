@@ -11,3 +11,16 @@ function solution(arr: number[]): number {
 
 let arr = [5, 7, 1, 3, 2, 9, 11];
 console.log(solution(arr));
+
+function lectureSolution(arr: number[]): number {
+  let answer,
+    min = Number.MAX_SAFE_INTEGER; // 큰 숫자로 초기화
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < min) min = arr[i];
+  }
+  answer = min;
+  return answer;
+}
+
+console.log(lectureSolution(arr));
