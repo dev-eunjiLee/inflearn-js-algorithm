@@ -10,12 +10,11 @@
 function solution(arr: number[]): number[] {
   let min = 101; // 조건에서 주어지는 숫자들은 다 100 이하의 자연수라고 했기 때문에 초기화를 101로 함
   let sum = 0;
-  arr
-    .filter((per) => per % 2 !== 0)
-    .forEach((per) => {
-      min = per < min ? per : min;
-      sum += per;
-    });
+  arr.forEach((per) => {
+    if (per % 2 === 0) return;
+    min = per < min ? per : min;
+    sum += per;
+  });
   return [sum, min];
 }
 
