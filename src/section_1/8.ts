@@ -6,15 +6,15 @@
 
 function solution(arr) {
   const ORIGIN_SUM = 100;
-  const sum = arr.reduce((prev, curr) => {
+  const totalLengthSum = arr.reduce((prev, curr) => {
     return prev + curr;
   }, 0);
-  const rest = sum - ORIGIN_SUM;
+  const restSum = totalLengthSum - ORIGIN_SUM;
   const lengthSet = new Set(arr);
   arr.forEach((per, index) => {
-    const other = rest - per;
+    const other = restSum - per;
     const otherIndex = arr.indexOf(other);
-    if (rest - per !== per && lengthSet.has(rest - per)) {
+    if (restSum - per !== per && lengthSet.has(restSum - per)) {
       arr.splice(index, 1);
       arr.splice(otherIndex - 1, 1);
       return false;
@@ -24,3 +24,19 @@ function solution(arr) {
 }
 
 console.log(solution([20, 7, 23, 19, 10, 15, 25, 8, 13]));
+
+function lectureSolution(arr) {
+  let answer = arr; // 얕은 복사 => arr의 메모리 주소와 같은 곳을 바라보고 있다.
+  let sum = arr.reduce((prev, curr) => prev + curr);
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (sum - (arr[i] + arr[j]) === 100) {
+        arr.splice(j, 1);
+        arr.splice(i, 1); // splice를 하면 index가 땡겨지기 때문에 뒷 index 먼저 없애고 앞 index를 없앤다
+      }
+    }
+  }
+  return answer; // arr의 얕은 복사를 해두었기 때문에 arr을 조작했더라도 answer를 전달하면 arr이 전달된다
+}
+
+console.log(lectureSolution([20, 7, 23, 19, 10, 15, 25, 8, 13]));
