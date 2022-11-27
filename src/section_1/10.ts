@@ -7,3 +7,19 @@ function solution(s: string, t: string): number {
 }
 
 console.log(solution("COMPUTERPROGRAMMING", "R"));
+
+function lectureSolution(s: string, t: string): number {
+  let answer = 0;
+  for (let x of s) {
+    if (x === t) answer++;
+  }
+  return answer;
+}
+
+console.log(lectureSolution("COMPUTERPROGRAMMING", "R"));
+
+function lectureSolution2(s: string, t: string): number {
+  return s.split(t).length - 1;
+}
+
+console.log(lectureSolution2("COMPUTERPROGRAMMING", "R"));
