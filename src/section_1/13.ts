@@ -10,3 +10,14 @@ function solution(s: string): string {
 }
 
 console.log(solution("StuDY"));
+
+function lectureSolution(s: string): string {
+  let answer = "";
+  for (let x of s) {
+    if (x === x.toUpperCase()) answer += x.toLowerCase();
+    else answer += x.toUpperCase();
+  }
+  return answer;
+}
+
+console.log(lectureSolution("StuDY"));
