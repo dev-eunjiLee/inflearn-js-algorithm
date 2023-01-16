@@ -4,6 +4,7 @@
  * - 미래를 생각하지 않고 각 단계에서 가장 최선의 선택을 하는 기법
  *
  * --> 빨리 끝나는 순으로 정렬을 그 다음 회의의 시작시간과 비교해서 넣어준다
+ * --> 그리디 알고리즘 잘 설명된 블로그: https://source-sc.tistory.com/59
  */
 
 function solution(meeting: number[][]) {
