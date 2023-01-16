@@ -21,6 +21,8 @@ function solution(meeting: number[][]) {
   return answer.length;
 }
 
+console.log("test");
+
 console.log(
   solution([
     [1, 4],
