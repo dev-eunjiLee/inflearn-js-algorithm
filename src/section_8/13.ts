@@ -48,3 +48,67 @@ function lectureSolution(n: number, f: number) {
 }
 
 console.log(lectureSolution(4, 16));
+console.log(lectureSolution(3, 677));
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+/**
+ * 만약 첫 스타트의 배열이 4라면 각 index 마다 4Ci 만큼 곱한 값이 최종 값이 된다
+ *
+ * nCr = n-1Cr-1 + n-1Cr
+ */
+
+function solution(firstLineCnt: number, finalNumber: number): Array<number> {
+  const multiplyCntArray = [];
+
+  const getMultiplyCnt = (n: number, r: number) => {
+    if (n === r || r === 0) {
+      return 1;
+    } else {
+      return getMultiplyCnt(n - 1, r - 1) + getMultiplyCnt(n - 1, r);
+    }
+  };
+
+  for (let i = 0; i < firstLineCnt; i++) {
+    multiplyCntArray[i] = getMultiplyCnt(firstLineCnt - 1, i);
+  }
+
+  const tmp = [];
+  let answer = [];
+  const ch = Array.from({ length: firstLineCnt + 1 }, () => 0);
+  let flag = true;
+
+  const DFS = (level: number, sum: number) => {
+    if (tmp[0] === 3) {
+      console.log(level, sum, tmp);
+    }
+
+    if (flag === false) {
+      return;
+    }
+    if (level === firstLineCnt) {
+      if (finalNumber === sum) {
+        answer = tmp.slice();
+        flag = false;
+      }
+    } else {
+      for (let i = 1; i <= firstLineCnt; i++) {
+        if (ch[i] === 0) {
+          ch[i] = 1;
+          tmp[level] = i;
+          DFS(level + 1, sum + multiplyCntArray[level] * tmp[level]);
+          ch[i] = 0;
+        }
+      }
+    }
+  };
+
+  DFS(0, 0);
+
+  return answer;
+}
+
+console.log(solution(4, 16));
