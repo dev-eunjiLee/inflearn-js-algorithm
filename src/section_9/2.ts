@@ -3,27 +3,39 @@ function solution(nodeGraphList: Array<Array<number>>) {
 
   const [N, M] = nodeGraphList[0]; // N: 정점의 수, M: 간선의 수
 
-  const list = Array.from({ length: N }, () =>
-    Array.from({ length: N }, () => 0)
+  const list = Array.from({ length: N + 1 }, () =>
+    Array.from({ length: N + 1 }, () => 0)
   );
 
   // 인접 배열 만들기
   for (let i = 1; i <= M; i++) {
     const [x, y] = nodeGraphList[i];
-    list[x - 1][y - 1] = 1;
+    list[x][y] = 1;
   }
 
-  // const route: Array<number> = [];
-  // function DFS(level: number) {
-  //   console.log(level);
-  //   if (route[route.length - 1] === 5) {
-  //     console.log(route);
-  //     answer++;
-  //   } else {
-  //   }
-  // }
-  //
-  // DFS(0);
+  const route = [];
+
+  function DFS(startIndex: number) {
+    if (route[route.length - 1] === N) {
+      answer++;
+    } else {
+      for (let x = startIndex; x < N + 1; x++) {
+        for (let y = x + 1; y < N + 1; y++) {
+          if (list[x][y] === 1) {
+            route.push(y);
+            DFS(y);
+            console.log(`pop 직전 route: ${route}`);
+            route.pop();
+          }
+        }
+      }
+    }
+  }
+
+  route.push(1);
+  DFS(1);
+  // TODO 13만 나와서 확인 필요
+  return answer;
 }
 console.log(
   solution([
