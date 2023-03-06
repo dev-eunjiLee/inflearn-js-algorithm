@@ -15,18 +15,18 @@ function solution(nodeGraphList: Array<Array<number>>) {
 
   const route = [];
 
-  function DFS(startIndex: number) {
+  function DFS(nodeNumber: number) {
     if (route[route.length - 1] === N) {
       answer++;
+      console.log(route);
     } else {
-      for (let x = startIndex; x < N + 1; x++) {
-        for (let y = x + 1; y < N + 1; y++) {
-          if (list[x][y] === 1) {
-            route.push(y);
-            DFS(y);
-            console.log(`pop 직전 route: ${route}`);
-            route.pop();
-          }
+      // 노드 넘버가 작은 곳으로 갈 수 있는데 그 경우를 확인해주지 않았었음
+      // 갔던 노드 체크도 안했었음
+      for (let i = 1; i <= N; i++) {
+        if (list[nodeNumber][i] === 1 && !route.includes(i)) {
+          route.push(i);
+          DFS(i);
+          route.pop();
         }
       }
     }
@@ -34,23 +34,22 @@ function solution(nodeGraphList: Array<Array<number>>) {
 
   route.push(1);
   DFS(1);
-  // TODO 13만 나와서 확인 필요
   return answer;
 }
-// console.log(
-//   solution([
-//     [5, 9],
-//     [1, 2],
-//     [1, 3],
-//     [1, 4],
-//     [2, 1],
-//     [2, 3],
-//     [2, 5],
-//     [3, 4],
-//     [4, 2],
-//     [4, 5],
-//   ])
-// );
+console.log(
+  solution([
+    [5, 9],
+    [1, 2],
+    [1, 3],
+    [1, 4],
+    [2, 1],
+    [2, 3],
+    [2, 5],
+    [3, 4],
+    [4, 2],
+    [4, 5],
+  ])
+);
 
 function lectureSolution(n, arr) {
   console.log(n, arr);
