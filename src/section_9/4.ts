@@ -27,6 +27,9 @@ function checkPath(
   );
 }
 
+const xList = [-1, 0, 1, 0];
+const yList = [0, 1, 0, -1];
+
 function solution(arr: Array<Array<number>>): number {
   let answer = 0;
 
@@ -63,10 +66,13 @@ function solution(arr: Array<Array<number>>): number {
       return;
     } else {
       path.push(nowCoordinate);
-      DFS({ x: nowX - 1, y: nowY }, arr, path);
-      DFS({ x: nowX + 1, y: nowY }, arr, path);
-      DFS({ x: nowX, y: nowY - 1 }, arr, path);
-      DFS({ x: nowX, y: nowY + 1 }, arr, path);
+
+      for (let i = 0; i < 4; i++) {
+        const nextX = nowX + xList[i];
+        const nextY = nowY + yList[i];
+        DFS({ x: nextX, y: nextY }, arr, path);
+      }
+
       path.pop();
     }
   }
@@ -75,6 +81,7 @@ function solution(arr: Array<Array<number>>): number {
   return answer;
 }
 
+console.time("me");
 console.log(
   solution([
     [0, 0, 0, 0, 0, 0, 0],
@@ -86,6 +93,7 @@ console.log(
     [1, 0, 0, 0, 0, 0, 0],
   ])
 );
+console.timeEnd("me");
 
 function lectureSolution(board) {
   let answer = 0;
@@ -113,6 +121,8 @@ function lectureSolution(board) {
   return answer;
 }
 
+console.time("lecture");
+
 console.log(
   lectureSolution([
     [0, 0, 0, 0, 0, 0, 0],
@@ -124,3 +134,4 @@ console.log(
     [1, 0, 0, 0, 0, 0, 0],
   ])
 );
+console.timeEnd("lecture");
