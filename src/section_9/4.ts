@@ -50,18 +50,12 @@ function solution(arr: Array<Array<number>>): number {
     if (wallCheckResult) return;
 
     // 경로 체크
+    // * 경로 배열을 추가로 체크하고 있기 때문에 아래의 수업 코드보다 시간 복잡도가 올라가서 속도가 느려짐
     const checkPathResult = checkPath(nowCoordinate, path);
     if (checkPathResult) return;
 
     // 도착지에 왔는지 확인
     if (nowX === 6 && nowY === 6) {
-      console.log(`
-        
-        🚀🚀 path: ${JSON.stringify(path)}
-        🚀🚀now: ${JSON.stringify(nowCoordinate)}
-        
-        `);
-
       answer++;
       return;
     } else {
