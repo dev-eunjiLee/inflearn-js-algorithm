@@ -141,6 +141,7 @@ function lectureCopySolution(board) {
         answer++;
         while (queue.length) {
           let x = queue.shift();
+          console.log(x);
           for (let k = 0; k < 8; k++) {
             let nx = x[0] + dx[k];
             let ny = x[1] + dy[k];
