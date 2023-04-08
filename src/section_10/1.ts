@@ -1,3 +1,7 @@
+/**
+ * BFS(깊이 우선 방식으로 푼 예습)
+ */
+
 type CNT = number;
 
 function up(
@@ -40,3 +44,23 @@ function solution(goal: number): number {
 }
 
 console.log(solution(7));
+
+/**
+ * 수업
+ */
+
+function lectureSolution(n) {
+  const dy = Array.from({ length: n + 1 }, () => 0);
+
+  // 직관적으로 구할 수 있는 값은 초기화해두기
+  dy[1] = 1;
+  dy[2] = 2;
+
+  for (let i = 3; i < dy.length; i++) {
+    dy[i] = dy[i - 1] + dy[i - 2];
+  }
+
+  return dy[n];
+}
+
+console.log(lectureSolution(7));
